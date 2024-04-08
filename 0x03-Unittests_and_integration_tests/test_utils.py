@@ -23,5 +23,18 @@ class TestAccessNestedMap(unittest.TestCase):
             path: Tuple[str],
             expected: Union[Dict, int],
     ) -> None:
-        """ Tests method's returns """
+        """ Tests outputs for differents inputs """
         self.assertEqual(access_nested_map(nested_map, path), expected)
+
+    @parameterized.expand([
+        ({}, ("a",), KeyError),
+        ({"a": 1}, ("a", "b"), KeyError)
+    ])
+    def test_access_nested_map_exception(
+            self,
+            nested_map: Dict,
+            path: Tuple[str],
+            expected: Union[Dict, int]
+    ) -> None:
+        """ Tests for error raising """
+        self.assertRaises(KeyError, lambda: (access_nested_map(nested_map, path), expected))
