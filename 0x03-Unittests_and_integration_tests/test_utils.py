@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" Parameterize a unit test """
+"""Tests utils.py"""
 
 
 import unittest
